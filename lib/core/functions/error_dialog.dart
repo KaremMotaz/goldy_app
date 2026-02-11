@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+
+import '../extensions/context_extensions.dart';
+import '../theming/app_colors.dart';
+import '../theming/app_styles.dart';
+
+Future<void> errorDialog({
+  required BuildContext context,
+  required String message,
+}) async {
+  return showDialog(
+    context: context,
+    builder: (context) {
+      return ErrorDialog(message: message);
+    },
+  );
+}
+
+class ErrorDialog extends StatelessWidget {
+  final String message;
+  final VoidCallback? onPressed;
+
+  const ErrorDialog({super.key, required this.message, this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      child: _buildChild(context),
+    );
+  }
+
+  Widget _buildChild(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(100),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.error_outline, color: AppColors.red, size: 48),
+          const SizedBox(height: 16),
+          Text(message, style: AppStyles.bold20, textAlign: TextAlign.center),
+          const SizedBox(height: 20),
+          OutlinedButton(
+            onPressed: () => context.pop(),
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(color: AppColors.brandGreen),
+            ),
+            child: Text(
+              "Dismiss",
+              style: AppStyles.medium15.copyWith(color: AppColors.brandGreen),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
