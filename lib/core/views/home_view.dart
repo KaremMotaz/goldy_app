@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:goldy/features/gold/presentation/gold_view.dart';
+import 'package:goldy/features/silver/presentation/silver_view.dart';
 import '../widgets/app_text_button.dart';
 
 class HomeView extends StatelessWidget {
@@ -14,13 +16,23 @@ class HomeView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppTextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GoldView()),
+                );
+              },
               buttonText: "Gold",
               backgroundColor: Colors.amberAccent,
             ),
             SizedBox(height: 20),
             AppTextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SilverView()),
+                );
+              },
               buttonText: "Silver",
               backgroundColor: Colors.grey,
             ),
