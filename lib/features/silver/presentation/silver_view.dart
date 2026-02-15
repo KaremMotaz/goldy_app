@@ -2,34 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:goldy/features/silver/manager/silver_cubit/silver_cubit.dart';
 
-
-class SilverView extends StatefulWidget {
+class SilverView extends StatelessWidget {
   const SilverView({super.key});
-
-  @override
-  State<SilverView> createState() => _SilverViewState();
-}
-
-class _SilverViewState extends State<SilverView> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<SilverCubit>().getSilverData();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text("Silver Tracker", style: TextStyle(color: Colors.white)),
+        centerTitle: true,
+        title: const Text(
+          "Silver Tracker",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.black,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/silver.png'),
+            Image.asset('assets/images/silver.png'),
             const SizedBox(height: 20),
 
             BlocBuilder<SilverCubit, SilverState>(
